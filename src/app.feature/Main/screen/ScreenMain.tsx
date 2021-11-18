@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import Test from "../component/Test";
+import MainCategory from "../component/MainCategory";
 
 const ScreenMain = () => {
   return (
     <StyledWrapper>
-      메인페이지
-      <Test />
+      <MainCategory />
     </StyledWrapper>
   );
 };
 
 export default ScreenMain;
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  margin: 50px auto;
+`;
