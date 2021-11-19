@@ -33,12 +33,22 @@ export default GoodsCard;
 
 const StyledWrapper = styled.div`
   width: 100%;
+
   .goods-img {
     width: 100%;
-    background-color: #f5f5f5;
     margin-bottom: 10px;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+
     img {
-      border-radius: 5px;
+      height: 100%;
+      object-fit: cover;
+
+      transition-duration: 200ms;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 

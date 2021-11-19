@@ -15,4 +15,5 @@ export default ScreenMain;
 
 const StyledWrapper = styled.div`
   margin: 50px auto;
+  max-width: 1136px;
 `;
