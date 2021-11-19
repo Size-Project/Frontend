@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import MainCategory from "../component/MainCategory";
+import MainPopular from "../component/MainPopular";
 
 const ScreenMain = () => {
   return (
     <StyledWrapper>
       <MainCategory />
+      <MainPopular />
     </StyledWrapper>
   );
 };

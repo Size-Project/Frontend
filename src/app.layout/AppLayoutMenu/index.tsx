@@ -31,8 +31,11 @@ const StyledWrapper = styled.div`
     height: 100%;
     overflow-x: scroll;
     white-space: nowrap;
-    border-top: 1px solid #ededed;
     border-bottom: 1px solid #ededed;
+    font-size: 15px;
+    font-weight: 700;
+    color: #424242;
+    padding: 0 40px;
 
     .menu-list {
       display: flex;
@@ -40,9 +43,14 @@ const StyledWrapper = styled.div`
       height: 100%;
       cursor: pointer;
       margin: 0 12px;
+      transition: color 200ms;
+
       &.true {
         color: #35c5f0;
         border-bottom: 2px solid #35c5f0;
+      }
+      &:hover {
+        color: #35c5f0;
       }
     }
   }

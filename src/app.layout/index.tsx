@@ -33,10 +33,10 @@ const AppLayout: React.FC = ({ children }) => {
         </div>
 
         <div className="header-right">
-          <div className="rt-wrap">
-            <span>로그인</span>
-            <span>회원가입</span>
-          </div>
+          <ul className="rt-wrap">
+            <li className="rt-first">로그인</li>
+            <li className="rt-second">회원가입</li>
+          </ul>
         </div>
       </StyledWrapper>
       <AppLayoutMenu />
@@ -56,6 +56,8 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   padding: 10px 60px;
   height: 80px;
+  z-index: 2;
+  border-bottom: 1px solid #ededed;
 
   .header-left {
     display: flex;
@@ -65,6 +67,7 @@ const StyledWrapper = styled.div`
       margin-right: 30px;
       font-size: 20px;
       font-weight: 900;
+      cursor: pointer;
     }
 
     .menu-wrap {
@@ -81,6 +84,10 @@ const StyledWrapper = styled.div`
         &.true {
           color: #35c5f0;
         }
+
+        &:hover {
+          color: #35c5f0;
+        }
       }
     }
   }
@@ -89,12 +96,12 @@ const StyledWrapper = styled.div`
     display: flex;
 
     .rt-wrap {
-      span {
-        cursor: pointer;
-        font-size: 15px;
-        font-weight: 700;
-        color: #757575;
+      list-style: none;
+
+      li {
+        display: inline-block;
         margin: 0 10px;
+        text-align: center;
       }
     }
   }
