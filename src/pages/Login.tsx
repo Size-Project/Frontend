@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import LoginLayout from "app.layout/login";
 
 const PageSign = () => {
-  return <StyledWrapper>로그인 페이지</StyledWrapper>;
+    return <LoginLayout />;
 };
 
 export default PageSign;
-
-const StyledWrapper = styled.div``;
