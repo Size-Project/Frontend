@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
+import MainCategorySwiper from "./MainCategorySwiper";
 
 SwiperCore.use([Pagination, Navigation]);
 
@@ -9,10 +10,17 @@ const MainCategory = () => {
   return (
     <StyledWrapper>
       <div className="category-title">카테고리</div>
+      <MainCategorySwiper />
+    </StyledWrapper>
+  );
+  return (
+    <StyledWrapperV2>
+      <div className="category-title">카테고리</div>
       <div className="swiper-category">
         <Swiper
           spaceBetween={10}
           slidesPerView={10}
+          centerInsufficientSlides
           className="category-list-wrap"
         >
           {Array.from(Array(20).keys()).map((item, idx) => (
@@ -23,13 +31,26 @@ const MainCategory = () => {
           ))}
         </Swiper>
       </div>
-    </StyledWrapper>
+    </StyledWrapperV2>
   );
 };
 
 export default MainCategory;
 
 const StyledWrapper = styled.div`
+  margin: 50px 60px 0;
+
+  .category-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .category-swiper-wrap {
+  }
+`;
+
+const StyledWrapperV2 = styled.div`
   margin: 50px 60px 0;
 
   .category-title {

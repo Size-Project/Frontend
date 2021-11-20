@@ -36,6 +36,8 @@ const StyledWrapper = styled.div`
 
   .goods-img {
     width: 100%;
+    height: auto;
+    padding-bottom: 100%;
     margin-bottom: 10px;
     position: relative;
     border-radius: 4px;
@@ -43,9 +45,10 @@ const StyledWrapper = styled.div`
 
     img {
       height: 100%;
+      position: absolute;
       object-fit: cover;
-
       transition-duration: 200ms;
+
       &:hover {
         transform: scale(1.1);
       }
