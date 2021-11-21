@@ -1,7 +1,8 @@
 import React from "react";
+import SignLayout from "app.layout/sign";
 
 const PageSign = () => {
-    return <div>회원가입페이지</div>;
+    return <SignLayout></SignLayout>;
 };
 
 export default PageSign;
