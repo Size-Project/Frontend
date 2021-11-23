@@ -1,15 +1,19 @@
 import styled from "styled-components";
-import Test from "../component/Test";
+import MainCategory from "../component/MainCategory";
+import MainPopular from "../component/MainPopular";
 
 const ScreenMain = () => {
   return (
     <StyledWrapper>
-      메인페이지
-      <Test />
+      <MainCategory />
+      <MainPopular />
     </StyledWrapper>
   );
 };
 
 export default ScreenMain;
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  margin: 50px auto;
+  max-width: 1136px;
+`;
