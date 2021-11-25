@@ -1,5 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
+import SNSloginBox from 'app.component/third-party/SNSloginBox';
+
+const StyledWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .home {
+    position: fixed;
+    left: 50px;
+    top: 50px;
+    font-size: 30px;
+  }
+  .sign-box {
+    width: 300px;
+    height: 800px;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      font-size: 30px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .sign-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 500px;
+      .input-box {
+        position: relative;
+        label {
+          position: absolute;
+          left: 0;
+          top: -20px;
+        }
+        .input {
+          appearance: none;
+          border: 1px solid #dbdbdb;
+          height: 50px;
+          border-radius: 4px;
+          margin-bottom: 50px;
+        }
+      }
+
+      .sign-button {
+        appearance: none;
+        border: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 52px;
+        background-color: rgb(53, 197, 240);
+        border-radius: 4px;
+      }
+    }
+  }
+`;
 
 const SignLayout = () => {
   return (
@@ -7,10 +66,7 @@ const SignLayout = () => {
       <div className="home">오늘의 집</div>
       <div className="sign-box">
         <div className="title">회원가입</div>
-        <section className="third-party-sign">
-          <div>SNS 계정으로 간편 로그인</div>
-          <div></div>
-        </section>
+        <SNSloginBox />
         <form className="sign-form">
           <div className="email-box input-box">
             <label htmlFor="email">이메일</label>
@@ -67,64 +123,3 @@ const SignLayout = () => {
 };
 
 export default SignLayout;
-
-const StyledWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .home {
-    position: fixed;
-    left: 50px;
-    top: 50px;
-    font-size: 30px;
-  }
-  .sign-box {
-    width: 300px;
-    height: 800px;
-    margin-top: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .title {
-      font-size: 30px;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-    .third-party-sign {
-      margin-bottom: 40px;
-    }
-    .sign-form {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 500px;
-      .input-box {
-        position: relative;
-        label {
-          position: absolute;
-          left: 0;
-          top: -20px;
-        }
-        .input {
-          appearance: none;
-          border: 1px solid #dbdbdb;
-          height: 50px;
-          border-radius: 4px;
-          margin-bottom: 50px;
-        }
-      }
-
-      .sign-button {
-        appearance: none;
-        border: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 52px;
-        background-color: rgb(53, 197, 240);
-        border-radius: 4px;
-      }
-    }
-  }
-`;

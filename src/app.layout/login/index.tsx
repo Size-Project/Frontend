@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SNSloginBox from 'app.component/third-party/SNSloginBox';
 
 const LoginLayout = () => {
   return (
@@ -16,10 +17,7 @@ const LoginLayout = () => {
           <button className="login-button">로그인</button>
         </form>
         <div>회원가입</div>
-        <section className="third-party-login">
-          <div>SNS 계정으로 간편 로그인</div>
-          <div></div>
-        </section>
+        <SNSloginBox />
       </div>
     </StyledWrapper>
   );
