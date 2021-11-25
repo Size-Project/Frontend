@@ -21,7 +21,4 @@ const StyledWrapper = styled.div`
     font-weight: 700;
     margin-bottom: 15px;
   }
-
-  .category-swiper-wrap {
-  }
 `;
