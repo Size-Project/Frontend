@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SNSloginBox from 'app.component/third-party/SNSloginBox';
+import BlueButton from 'app.component/Button/blueButton';
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -45,16 +46,11 @@ const StyledWrapper = styled.div`
           border-radius: 4px;
           margin-bottom: 50px;
         }
-      }
-
-      .sign-button {
-        appearance: none;
-        border: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 52px;
-        background-color: rgb(53, 197, 240);
-        border-radius: 4px;
+        .input-password,
+        .input-password-confirm,
+        .input-nickname {
+          width: 100%;
+        }
       }
     }
   }
@@ -71,7 +67,7 @@ const SignLayout = () => {
           <div className="email-box input-box">
             <label htmlFor="email">이메일</label>
             <input
-              className="input email"
+              className="input input-email"
               type="email"
               placeholder="이메일"
               id="email"
@@ -88,7 +84,7 @@ const SignLayout = () => {
           <div className="password-box input-box">
             <label htmlFor="password">비밀번호</label>
             <input
-              className="input password"
+              className="input input-password"
               type="password"
               placeholder="비밀번호"
               id="password"
@@ -97,7 +93,7 @@ const SignLayout = () => {
           <div className="password-confirm-box input-box">
             <label htmlFor="password-confirm">비밀번호 확인</label>
             <input
-              className="input password-confirm"
+              className="input input-password-confirm"
               type="password"
               placeholder="비밀번호 확인"
               id="password-confirm"
@@ -106,13 +102,15 @@ const SignLayout = () => {
           <div className="nickname-box input-box">
             <label htmlFor="password-confirm">닉네임</label>
             <input
-              className="input nickname"
+              className="input input-nickname"
               type="text"
               placeholder="닉네임"
               id="nickname"
             />
           </div>
-          <button className="sign-button">회원가입</button>
+          <div className="button-box">
+            <BlueButton>회원가입</BlueButton>
+          </div>
         </form>
         <div>
           이미 아이디가 있으신가요? <span>로그인</span>

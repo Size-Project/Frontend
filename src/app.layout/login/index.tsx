@@ -1,29 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SNSloginBox from 'app.component/third-party/SNSloginBox';
-
-const LoginLayout = () => {
-  return (
-    <StyledWrapper>
-      <div className="login-box">
-        <div className="title">오늘의 집</div>
-        <form className="login-form">
-          <input className="input email" type="email" placeholder="이메일" />
-          <input
-            className="input password"
-            type="password"
-            placeholder="비밀번호"
-          />
-          <button className="login-button">로그인</button>
-        </form>
-        <div>회원가입</div>
-        <SNSloginBox />
-      </div>
-    </StyledWrapper>
-  );
-};
-
-export default LoginLayout;
+import BlueButton from 'app.component/Button/blueButton';
 
 const StyledWrapper = styled.div`
   box-sizing: border-box;
@@ -53,16 +31,34 @@ const StyledWrapper = styled.div`
         height: 50px;
         border-radius: 4px;
       }
-
-      .login-button {
-        appearance: none;
-        border: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 52px;
-        background-color: rgb(53, 197, 240);
-        border-radius: 4px;
+      .login-button-box {
+        margin-top: 15px;
       }
     }
   }
 `;
+
+const LoginLayout = () => {
+  return (
+    <StyledWrapper>
+      <div className="login-box">
+        <div className="title">오늘의 집</div>
+        <form className="login-form">
+          <input className="input email" type="email" placeholder="이메일" />
+          <input
+            className="input password"
+            type="password"
+            placeholder="비밀번호"
+          />
+          <div className="login-button-box">
+            <BlueButton>로그인</BlueButton>
+          </div>
+        </form>
+        <div>회원가입</div>
+        <SNSloginBox />
+      </div>
+    </StyledWrapper>
+  );
+};
+
+export default LoginLayout;

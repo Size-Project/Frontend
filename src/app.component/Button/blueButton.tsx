@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledWrapper = styled.button`
+interface styledProps {
+  width: number;
+  height: number;
+  unit: string;
+}
+
+const StyledWrapper = styled.button<styledProps>`
   appearance: none;
   border: 0;
   font-size: 17px;
@@ -11,16 +17,29 @@ const StyledWrapper = styled.button`
   color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
-  width: ${props.width};
+  width: ${(props) => props.width + props.unit};
+  height: ${(props) => props.height + props.unit};
 `;
 
-type prop {
-    width: string,
-    
+interface props {
+  width?: number;
+  height?: number;
+  unit?: string;
+  children?: any;
 }
 
-const blueButton = ({ width: string, height: string, unit: string = "px" }) => {
-  return <StyledWrapper width={width} height={height} />;
+const BlueButton = ({
+  width = 300,
+  height = 52,
+  unit = 'px',
+  children,
+}: props) => {
+  console.log(width);
+  return (
+    <StyledWrapper width={width} height={height} unit={unit}>
+      {children}
+    </StyledWrapper>
+  );
 };
 
-export default blueButton;
+export default BlueButton;
