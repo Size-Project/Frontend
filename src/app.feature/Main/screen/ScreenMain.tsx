@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import MainCategory from "../component/MainCategory";
-import MainPopular from "../component/MainPopular";
+import styled from 'styled-components';
+import MainCategory from '../component/MainCategory';
+import MainPopular from '../component/MainPopular';
 
 const ScreenMain = () => {
   return (
@@ -14,6 +14,6 @@ const ScreenMain = () => {
 export default ScreenMain;
 
 const StyledWrapper = styled.div`
-  margin: 50px auto;
+  margin: 100px auto;
   max-width: 1136px;
 `;
