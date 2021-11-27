@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { SubMenuObj } from './LayoutMenuObj';
 import CategorySwiper from './CategorySwiper';
 
-const AppLayoutMenu: React.FC<any> = ({ selected, hover }) => {
+const AppLayoutMenu: React.FC<any> = ({
+  selected,
+  subSelected,
+  setSubSelected,
+  hover,
+}) => {
   const [scroll, setScroll] = useState(true);
-  const [subSelected, setSubSelected] = useState(10);
   const [subHover, setSubHover] = useState(false);
   const [categoryHover, setCategoryHover] = useState(false);
 
-  console.log(categoryHover);
   window.addEventListener('scroll', () => {
     if (window.scrollY >= 50) {
       setScroll(false);
@@ -22,8 +26,9 @@ const AppLayoutMenu: React.FC<any> = ({ selected, hover }) => {
     <>
       <StyledWrapper
         hover={hover}
-        scroll={scroll}
+        subHover={subHover}
         categoryHover={categoryHover}
+        scroll={scroll}
       >
         <ul className="menu-list-wrap">
           {SubMenuObj[hover ?? selected].map((item: any, idx: number) => (
@@ -36,7 +41,7 @@ const AppLayoutMenu: React.FC<any> = ({ selected, hover }) => {
               }}
               onMouseOut={() => setSubHover(false)}
             >
-              {item?.name}
+              <Link to={item?.path}>{item?.name}</Link>
             </li>
           ))}
         </ul>
@@ -55,7 +60,7 @@ const AppLayoutMenu: React.FC<any> = ({ selected, hover }) => {
 export default AppLayoutMenu;
 
 const StyledWrapper = styled.div<any>`
-  ${({ hover, scroll, categoryHover }) => css`
+  ${({ hover, subHover, categoryHover, scroll }) => css`
     display: flex;
     align-items: center;
     width: 100%;
@@ -86,7 +91,6 @@ const StyledWrapper = styled.div<any>`
       border-bottom: 1px solid #ededed;
       font-size: 15px;
       font-weight: 700;
-      color: #424242;
       padding: 0 40px;
 
       .menu-list {
@@ -97,12 +101,21 @@ const StyledWrapper = styled.div<any>`
         margin: 0 12px;
         transition: color 200ms;
 
-        &.true {
-          color: #35c5f0;
-          border-bottom: 2px solid #35c5f0;
+        a {
+          color: #424242;
         }
+
+        &.true {
+          border-bottom: 2px solid #35c5f0;
+          a {
+            color: #35c5f0 !important;
+          }
+        }
+
         &:hover {
-          color: #35c5f0;
+          a {
+            color: #35c5f0 !important;
+          }
         }
       }
     }

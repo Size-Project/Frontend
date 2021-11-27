@@ -22,9 +22,8 @@ const StyledWrapper = styled.div<any>`
   ${({ subHover }) => css`
     width: 100%;
     height: 150px;
-    padding: 10px 40px;
     position: fixed;
-    top: ${subHover ? '130px' : '-80px'};
+    top: ${subHover ? '130px' : '-100px'};
     transition-delay: 500ms;
     transition: top 500ms;
     background-color: #fff;
@@ -35,13 +34,32 @@ const StyledWrapper = styled.div<any>`
     }
 
     .swiper-menu-category-wrap {
-      overflow: hidden;
+      background-color: #fff;
+      padding: 10px 40px;
+      overflow-x: scroll;
       display: flex;
       width: 100%;
+
       .menu-category-item {
+        padding: 10px 5px;
+        cursor: pointer;
+        color: #424242;
+
         img {
           width: 80px;
           height: 80px;
+          margin-bottom: 20px;
+        }
+
+        .category-item-title {
+          text-align: center;
+          margin: 0 -10px;
+          font-size: 14px;
+          font-weight: 700;
+        }
+
+        &:hover {
+          color: #35c5f0;
         }
       }
     }

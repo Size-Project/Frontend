@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AppLayoutMenu from './AppLayoutMenu';
 import { Link } from 'react-router-dom';
-import { MenuObj } from './AppLayoutMenu/LayoutMenuObj';
+import AppLayoutMenu from './AppLayoutMenu';
+import { MenuObj, SubMenuObj } from './AppLayoutMenu/LayoutMenuObj';
 
 const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
+  const [subSelected, setSubSelected] = useState(10);
   const [hover, setHover] = useState(null);
 
   return (
@@ -41,7 +42,10 @@ const AppLayout: React.FC = ({ children }) => {
             {MenuObj.map((menu: any) => (
               <li
                 className={`menu ${selected === menu?.id}`}
-                onClick={() => setSelected(menu?.id)}
+                onClick={() => {
+                  setSelected(menu?.id);
+                  setSubSelected(SubMenuObj[menu?.id][0].id);
+                }}
                 onMouseOver={() => setHover(menu?.id)}
                 onMouseOut={() => setHover(null)}
               >
@@ -62,7 +66,12 @@ const AppLayout: React.FC = ({ children }) => {
           </ul>
         </div>
       </StyledWrapper>
-      <AppLayoutMenu selected={selected} hover={hover} />
+      <AppLayoutMenu
+        selected={selected}
+        subSelected={subSelected}
+        setSubSelected={setSubSelected}
+        hover={hover}
+      />
       <StyledBody>{children}</StyledBody>
     </>
   );
