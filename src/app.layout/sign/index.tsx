@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import BlueButton from 'app.component/Button/blueButton';
 
 const SignLayout = () => {
   return (
@@ -135,9 +136,7 @@ const SignLayout = () => {
               id="nickname"
             />
           </div>
-          <div className="button-box">
-            <BlueButton>회원가입</BlueButton>
-          </div>
+          <button className="sign-button">회원가입</button>
         </form>
         <div className="login-button">
           이미 아이디가 있으신가요? <Link to="/login">로그인</Link>
