@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import PageMain from './pages/Main';
 import PageSign from './pages/Sign';
 import PageLogin from './pages/Login';
+import PageProduction from './pages/Production';
 import PageCategory from './pages/Category';
 
 const App = () => {
@@ -14,6 +15,11 @@ const App = () => {
         <Route exact path="/" element={<PageMain />} />
         <Route exact path="/sign" element={<PageSign />} />
         <Route exact path="/login" element={<PageLogin />} />
+        <Route
+          exact
+          path="/production/:productionId"
+          element={<PageProduction />}
+        />
       </Routes>
     </>
   );

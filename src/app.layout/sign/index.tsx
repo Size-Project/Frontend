@@ -111,7 +111,7 @@ const SignLayout = () => {
           <div className="password-box input-box">
             <label htmlFor="password">비밀번호</label>
             <input
-              className="input password"
+              className="input input-password"
               type="password"
               placeholder="비밀번호"
               id="password"
@@ -120,7 +120,7 @@ const SignLayout = () => {
           <div className="password-confirm-box input-box">
             <label htmlFor="password-confirm">비밀번호 확인</label>
             <input
-              className="input password-confirm"
+              className="input input-password-confirm"
               type="password"
               placeholder="비밀번호 확인"
               id="password-confirm"
@@ -129,13 +129,15 @@ const SignLayout = () => {
           <div className="nickname-box input-box">
             <label htmlFor="password-confirm">닉네임</label>
             <input
-              className="input nickname"
+              className="input input-nickname"
               type="text"
               placeholder="닉네임"
               id="nickname"
             />
           </div>
-          <button className="sign-button">회원가입</button>
+          <div className="button-box">
+            <BlueButton>회원가입</BlueButton>
+          </div>
         </form>
         <div className="login-button">
           이미 아이디가 있으신가요? <Link to="/login">로그인</Link>

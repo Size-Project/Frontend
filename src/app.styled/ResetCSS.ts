@@ -95,6 +95,7 @@ html, body, div, span, applet, object, iframe,
 
   img {
     width: 100%;
+    height: 100%;
   }
 
 `;
