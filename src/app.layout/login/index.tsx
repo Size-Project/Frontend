@@ -192,3 +192,28 @@ const StyledWrapper = styled.div`
     }
   }
 `;
+
+const LoginLayout = () => {
+  return (
+    <StyledWrapper>
+      <div className="login-box">
+        <div className="title">오늘의 집</div>
+        <form className="login-form">
+          <input className="input email" type="email" placeholder="이메일" />
+          <input
+            className="input password"
+            type="password"
+            placeholder="비밀번호"
+          />
+          <div className="login-button-box">
+            <BlueButton>로그인</BlueButton>
+          </div>
+        </form>
+        <div>회원가입</div>
+        <SNSloginBox />
+      </div>
+    </StyledWrapper>
+  );
+};
+
+export default LoginLayout;
