@@ -34,7 +34,6 @@ const BlueButton = ({
   unit = 'px',
   children,
 }: props) => {
-  console.log(width);
   return (
     <StyledWrapper width={width} height={height} unit={unit}>
       {children}
