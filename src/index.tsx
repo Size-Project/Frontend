@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { GlobalStyles } from "app.styled";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./app.styled/styled";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { GlobalStyles } from 'app.styled';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './app.styled/styled';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -14,7 +14,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </ThemeProvider>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

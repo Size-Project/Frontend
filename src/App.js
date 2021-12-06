@@ -8,6 +8,7 @@ import PageCategory from './pages/Category';
 
 const App = () => {
   //로그인 여부 확인해서 로그인 창 or 메인 페이지 결정
+
   return (
     <>
       <Routes>
