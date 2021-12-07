@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import API from '../../app.modules/api';
+import { API_USERS_LOGIN } from '../../app.modules/api/constant';
 
 const LoginLayout = () => {
-  const handleLogin = async (e: any) => {
-    e.preventDefault();
+  const [formData, setFormData] = useState({ email: null, password: null });
+
+  const handleChange = (value: any) => {
+    setFormData((prev) => ({ ...prev, [value.target.id]: value.target.value }));
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    const res = await API.POST({
+      url: API_USERS_LOGIN,
+      data: {
+        email: formData?.email,
+        password: formData?.password,
+      },
+    });
+
+    if (res.data) console.log('로그인 성공');
+    else console.log('로그인 실패');
   };
 
   return (
@@ -34,14 +52,24 @@ const LoginLayout = () => {
             </g>
           </svg>
         </div>
-        <form className="login-form">
-          <input className="input email" type="email" placeholder="이메일" />
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            className="input email"
+            type="email"
+            placeholder="이메일"
+            id="email"
+            required
+            onChange={handleChange}
+          />
           <input
             className="input password"
             type="password"
             placeholder="비밀번호"
+            id="password"
+            required
+            onChange={handleChange}
           />
-          <button className="login-button" onClick={handleLogin}>
+          <button className="login-button" type="submit">
             로그인
           </button>
         </form>

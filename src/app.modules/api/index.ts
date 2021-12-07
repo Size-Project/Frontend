@@ -1,18 +1,18 @@
 import axios from 'axios';
 
 export let axiosClient = axios.create({
-  baseURL: 'http://localhost:8080',
+  // baseURL: 'http://ohouse-api.duckdns.org:8080',
 });
 
 axiosClient.defaults.withCredentials = true;
 
 class API {
-  async CALL({ method, url, data = null }: any) {
+  async CALL({ method, url, data = null, headers }: any) {
     const response = axiosClient({
       url,
       method,
       data,
-      // headers
+      headers,
     });
 
     response.catch((error) => {

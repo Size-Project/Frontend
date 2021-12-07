@@ -11,9 +11,11 @@
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
+    "http-proxy-middleware": "^0.19.1",
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
@@ -47,5 +49,6 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.15"
-  }
+  },
+  "proxy": "http://ohouse-api.duckdns.org:8080"
 }

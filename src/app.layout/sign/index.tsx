@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BlueButton from 'app.component/Button/blueButton';
+import API from 'app.modules/api';
+import { API_USERS } from '../../app.modules/api/constant';
 
 const SignLayout = () => {
+  const [formData, setFormData] = useState({
+    email: null,
+    emails: 'naver.com',
+    password: null,
+    passwordConfirm: null,
+    nickname: null,
+  });
+
+  const handleChange = (value: any) => {
+    setFormData((prev) => ({ ...prev, [value.target.id]: value.target.value }));
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    if (formData?.password !== formData?.passwordConfirm) {
+      return;
+    }
+
+    const res = await API.POST({
+      url: API_USERS,
+      data: {
+        email: formData?.email + '@' + formData?.emails,
+        password: formData?.password,
+        nickname: formData?.nickname,
+      },
+    });
+
+    if (res.data === 'success') console.log('회원가입 성공');
+    else console.log('회원가입 실패');
+  };
+
   return (
     <StyledWrapper>
       <div className="home">
@@ -89,18 +122,25 @@ const SignLayout = () => {
             </svg>
           </div>
         </div>
-        <form className="sign-form">
+        <form className="sign-form" onSubmit={handleSubmit}>
           <div className="email-box input-box">
             <label htmlFor="email">이메일</label>
             <div className="email-input-wrap">
               <input
                 className="input email"
-                type="email"
                 placeholder="이메일"
                 id="email"
+                required
+                onChange={handleChange}
               />
               <span>@</span>
-              <select name="emails" className="emails">
+              <select
+                name="emails"
+                className="emails"
+                id="emails"
+                required
+                onChange={handleChange}
+              >
                 <option value="naver.com">naver.com</option>
                 <option value="daum.net">daum.net</option>
                 <option value="hanmail.net">hanmail.net</option>
@@ -116,6 +156,8 @@ const SignLayout = () => {
               type="password"
               placeholder="비밀번호"
               id="password"
+              required
+              onChange={handleChange}
             />
           </div>
           <div className="password-confirm-box input-box">
@@ -124,7 +166,9 @@ const SignLayout = () => {
               className="input input-password-confirm"
               type="password"
               placeholder="비밀번호 확인"
-              id="password-confirm"
+              id="passwordConfirm"
+              required
+              onChange={handleChange}
             />
           </div>
           <div className="nickname-box input-box">
@@ -134,9 +178,13 @@ const SignLayout = () => {
               type="text"
               placeholder="닉네임"
               id="nickname"
+              required
+              onChange={handleChange}
             />
           </div>
-          <button className="sign-button">회원가입</button>
+          <button className="sign-button" type="submit">
+            회원가입
+          </button>
         </form>
         <div className="login-button">
           이미 아이디가 있으신가요? <Link to="/login">로그인</Link>
