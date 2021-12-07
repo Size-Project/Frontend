@@ -1,9 +1,43 @@
-import React from "react";
-import styled from "styled-components";
-import GoodsCard from "app.component/GoodsCard/GoodsCard";
-import GridGoods from "app.component/Grid/GridGoods";
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
+import API from 'app.modules/api';
+import GoodsCard from 'app.component/GoodsCard/GoodsCard';
+import GridGoods from 'app.component/Grid/GridGoods';
+import useIntersectionObserver from 'app.modules/util/useIntersectionObserver';
+import { API_ITEMS } from 'app.modules/api/constant';
 
 const MainPopular = () => {
+  const lastPostRef = useRef();
+  const currentPage = useRef(0);
+
+  const [goods, setGoods]: any = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
+
+  const requestGoods = async () => {
+    try {
+      setIsLoading(true);
+      const res = await API.GET(
+        `${API_ITEMS}?size=30&from=${currentPage?.current}`,
+      );
+      if (!res) throw 'err';
+      setHasNextPage(res.data.length > 0);
+      setGoods([...goods, ...res?.data]);
+      currentPage.current += 30;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useIntersectionObserver({
+    root: null,
+    target: lastPostRef,
+    enabled: hasNextPage,
+    onIntersect: requestGoods,
+  });
+
   return (
     <StyledWrapper>
       <div className="popular-title">인기 상품</div>
@@ -33,9 +67,13 @@ const MainPopular = () => {
         </div>
       </div>
       <GridGoods>
-        {Array.from(Array(20).keys()).map((item, idx) => (
-          <GoodsCard key={idx} />
+        {goods?.map((item: any, idx: number) => (
+          <GoodsCard key={idx} goods={item} />
         ))}
+        <div
+          //@ts-ignore
+          ref={lastPostRef}
+        />
       </GridGoods>
     </StyledWrapper>
   );
@@ -119,7 +157,7 @@ const StyledWrapper = styled.div`
         }
 
         &:after {
-          content: "";
+          content: '';
           position: absolute;
           display: block;
           border-width: 0 9px 9px;

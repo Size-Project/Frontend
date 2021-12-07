@@ -1,24 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import SampleGoods from "./goods.webp";
+import React from 'react';
+import styled from 'styled-components';
 
-const GoodsCard = () => {
+const GoodsCard = ({ goods }: any) => {
   return (
     <StyledWrapper className="goods-card-wrap">
       <a className="goods-card">
         <div className="goods-img">
-          <img src={SampleGoods} />
+          <img src={goods?.imageUrl} />
         </div>
         <div className="goods-content">
-          <div className="goods-brand">장미맨숀</div>
-          <div className="goods-title">
-            리브 원목 화장대 2colors리브 원목 화장대 2colors리브 원목 화장대
-            2colors리브 원목 화장대 2colors리브 원목 화장대 2colors리브 원목
-            화장대 2colors
-          </div>
+          <div className="goods-brand">{goods?.storeName}</div>
+          <div className="goods-title">{goods?.name}</div>
           <div className="goods-price">
             <span className="price-off">59%</span>
-            <span className="price-amount">{(269000).toLocaleString()}</span>
+            <span className="price-amount">
+              {goods?.price.toLocaleString()}
+            </span>
           </div>
           <div className="goods-review">
             <div className="review-star">
