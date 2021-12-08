@@ -33,8 +33,8 @@ const GoodsCard = ({ goods }: any) => {
                 ></path>
               </svg>
             </div>
-            <div className="review-grade">4.5</div>
-            <div className="review-detail">리뷰 682</div>
+            <div className="review-grade">{goods?.reviewRate}</div>
+            <div className="review-detail">리뷰 {goods?.reviewCount}</div>
           </div>
           <div className="goods-tag"></div>
         </div>

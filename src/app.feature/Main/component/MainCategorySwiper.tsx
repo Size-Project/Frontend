@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import API from 'app.modules/api';
 
-const IMG_CNT = 22;
-const MOVING_CNT = 10;
+// const IMG_CNT = 22;
+const MOVING_CNT = 7;
 
 interface ITSwiper {
   swiperX: number;
@@ -11,6 +12,20 @@ interface ITSwiper {
 const MainCategorySwiper = () => {
   const [swiperX, setSwiperX] = useState(0);
   const [swiperEnd, setSwiperEnd] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  const requestCategories = async () => {
+    try {
+      const res = await API.GET('/api/categories');
+      setCategories(res?.data?.subCategories);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    requestCategories();
+  }, []);
 
   const handlePrevBtn = () => {
     setSwiperEnd(false);
@@ -19,9 +34,11 @@ const MainCategorySwiper = () => {
   };
 
   const handleNextBtn = () => {
-    if (IMG_CNT - Math.abs(swiperX) * 2 < MOVING_CNT) {
-      console.log("작은 경우");
-      setSwiperX((prev) => prev - (IMG_CNT - Math.abs(swiperX) * 2));
+    if (categories.length - Math.abs(swiperX) * 2 < MOVING_CNT) {
+      console.log('작은 경우');
+      setSwiperX(
+        (prev) => prev - (categories.length - Math.abs(categories.length) * 2),
+      );
       setSwiperEnd(true);
     } else {
       setSwiperX((prev) => prev - MOVING_CNT);
@@ -33,21 +50,21 @@ const MainCategorySwiper = () => {
       <div className="swiper-category-wrap">
         {!!swiperX && (
           <button className="swiper-btn prev" onClick={handlePrevBtn}>
-            {"<"}
+            {'<'}
           </button>
         )}
 
         <ul className="swiper-category">
-          {Array.from(Array(IMG_CNT).keys()).map((item, idx) => (
+          {categories.map((item: any, idx) => (
             <li className="category-item" key={idx}>
-              <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{" "}
-              <div className="category-item-title">카테고리{idx + 1}</div>
+              <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
+              <div className="category-item-title">{item?.name}</div>
             </li>
           ))}
         </ul>
-        {!(IMG_CNT - Math.abs(swiperX) === MOVING_CNT) && (
+        {!(categories.length - Math.abs(swiperX) === MOVING_CNT) && (
           <button className="swiper-btn next" onClick={handleNextBtn}>
-            {">"}
+            {'>'}
           </button>
         )}
       </div>
@@ -61,11 +78,10 @@ const StyledWrapper = styled.div<ITSwiper>`
   ${({ swiperX }) => css`
     .swiper-category-wrap {
       position: relative;
-
       .swiper-btn {
         cursor: pointer;
         position: absolute;
-        top: 50%;
+        top: calc(50% - 16px);
         z-index: 2;
         width: 32px;
         height: 32px;
@@ -81,11 +97,23 @@ const StyledWrapper = styled.div<ITSwiper>`
         overflow: hidden;
         display: flex;
         width: 100%;
+        height: 120px;
+
         .category-item {
+          height: 100%;
           min-width: calc(10%);
           cursor: pointer;
           transition-duration: 400ms;
           transform: translateX(calc(100% * ${swiperX}));
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+
+          img {
+            max-width: 80px;
+            max-height: 80px;
+          }
 
           .category-item-title {
             margin: 18px 0 0;

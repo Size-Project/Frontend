@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+import API from '../../app.modules/api';
 
 const CategorySwiper: React.FC<any> = ({ subHover }) => {
+  const [categories, setCategories] = useState([]);
+
+  const requestCategories = async () => {
+    try {
+      const res = await API.GET('/api/categories');
+      setCategories(res?.data?.subCategories);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    requestCategories();
+  }, []);
+
   return (
     <StyledWrapper subHover={subHover}>
       <ul className="swiper-menu-category-wrap">
-        {Array.from(Array(20).keys()).map((item, idx) => (
+        {categories?.map((item: any, idx) => (
           <li className="menu-category-item" key={idx}>
             <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
-            <div className="category-item-title">카테고리{idx + 1}</div>{' '}
+            <div className="category-item-title">{item?.name}</div>{' '}
           </li>
         ))}
       </ul>
