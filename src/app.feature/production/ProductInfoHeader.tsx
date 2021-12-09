@@ -27,14 +27,15 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const ProductInfoHeader = () => {
+const ProductInfoHeader = ({ name, price, storeName }: any) => {
   return (
     <StyledWrapper>
-      <div className="name">상품명</div>
+      <div className="storeName">{storeName}</div>
+      <div className="name">{name}</div>
       <div className="review">4.5 20개 리뷰</div>
       <div className="discount">
         <span className="discount-rate">30%</span>
-        <span className="price">100,000원</span>
+        <span className="price">{price}원</span>
       </div>
     </StyledWrapper>
   );
