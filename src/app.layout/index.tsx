@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useRoutes } from 'react-router-dom';
 import AppLayoutMenu from './AppLayoutMenu';
 import { MenuObj, SubMenuObj } from './AppLayoutMenu/LayoutMenuObj';
 
 const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
-  const [subSelected, setSubSelected] = useState(10);
+  const [subSelected, setSubSelected] = useState(
+    SubMenuObj[selected].find(
+      (item: any) => item?.path === window.location.pathname,
+    ).id,
+  );
   const [hover, setHover] = useState(null);
 
   return (
