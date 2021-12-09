@@ -5,8 +5,8 @@ import background2 from './image/background2.jpeg';
 import background3 from './image/background3.jpeg';
 import background4 from './image/background4.jpeg';
 import background5 from './image/background5.jpeg';
-import ProductInfoHeader from 'app.feature/Production/ProductInfoHeader';
-import ButtonBox from 'app.feature/Production/ButtonBox';
+import ProductInfoHeader from 'app.feature/production/ProductInfoHeader';
+import ButtonBox from 'app.feature/production/ButtonBox';
 
 const StyledWrapper = styled.div`
   width: 1136px;
