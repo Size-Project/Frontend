@@ -6,14 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from 'app.styled';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './app.styled/styled';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './app.store';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <GlobalStyles />
-      <App />
-    </BrowserRouter>
-  </ThemeProvider>,
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyles />
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root'),
 );
 

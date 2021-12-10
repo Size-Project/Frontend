@@ -41,7 +41,9 @@ const AppLayoutMenu: React.FC<any> = ({
               }}
               onMouseOut={() => setSubHover(false)}
             >
-              <Link to={item?.path}>{item?.name}</Link>
+              <a href={item?.path} onClick={() => setSubSelected(item?.id)}>
+                {item?.name}
+              </a>
             </li>
           ))}
         </ul>

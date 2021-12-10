@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import API from 'app.modules/api';
+import { useSelector } from 'react-redux';
 
 // const IMG_CNT = 22;
 const MOVING_CNT = 7;
@@ -12,20 +13,8 @@ interface ITSwiper {
 const MainCategorySwiper = () => {
   const [swiperX, setSwiperX] = useState(0);
   const [swiperEnd, setSwiperEnd] = useState(false);
-  const [categories, setCategories] = useState([]);
 
-  const requestCategories = async () => {
-    try {
-      const res = await API.GET('/api/categories');
-      setCategories(res?.data?.subCategories);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    requestCategories();
-  }, []);
+  const categories = useSelector((state: any) => state.category);
 
   const handlePrevBtn = () => {
     setSwiperEnd(false);
@@ -34,7 +23,7 @@ const MainCategorySwiper = () => {
   };
 
   const handleNextBtn = () => {
-    if (categories.length - Math.abs(swiperX) * 2 < MOVING_CNT) {
+    if (categories?.length - Math.abs(swiperX) * 2 < MOVING_CNT) {
       console.log('작은 경우');
       setSwiperX(
         (prev) => prev - (categories.length - Math.abs(categories.length) * 2),
@@ -55,12 +44,13 @@ const MainCategorySwiper = () => {
         )}
 
         <ul className="swiper-category">
-          {categories.map((item: any, idx) => (
-            <li className="category-item" key={idx}>
-              <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
-              <div className="category-item-title">{item?.name}</div>
-            </li>
-          ))}
+          {categories &&
+            categories?.map((item: any, idx: number) => (
+              <li className="category-item" key={idx}>
+                <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
+                <div className="category-item-title">{item?.name}</div>
+              </li>
+            ))}
         </ul>
         {!(categories.length - Math.abs(swiperX) === MOVING_CNT) && (
           <button className="swiper-btn next" onClick={handleNextBtn}>
