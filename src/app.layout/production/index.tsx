@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import background1 from './image/background1.jpeg';
-import background2 from './image/background2.jpeg';
-import background3 from './image/background3.jpeg';
-import background4 from './image/background4.jpeg';
-import background5 from './image/background5.jpeg';
-import ProductInfoHeader from '../../app.feature/Production/ProductInfoHeader';
-import ButtonBox from '../../app.feature/Production/ButtonBox';
+import ProductInfoHeader from 'app.feature/production/ProductInfoHeader';
+import ButtonBox from 'app.feature/production/ButtonBox';
+import { API_ITEMS } from 'app.modules/api/constant';
+import { useState, useEffect } from 'react';
+import API from 'app.modules/api';
+import { useParams } from 'react-router';
 
 const StyledWrapper = styled.div`
   width: 1136px;
@@ -46,24 +45,55 @@ const StyledWrapper = styled.div`
 `;
 
 const ProductionLayout = () => {
+  const [product, setProduct] = useState({
+    id: 0,
+    imageUrl: '',
+    name: '',
+    price: 0,
+    storeName: '',
+  });
+
+  const { productionId } = useParams();
+
+  const requestProduct = async () => {
+    try {
+      const res = await API.GET(`${API_ITEMS}/${productionId}`);
+      const data = res.data;
+      setProduct({
+        ...product,
+        id: data.id,
+        imageUrl: data.imageUrl,
+        name: data.name,
+        price: data.price,
+        storeName: data.storeName,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    requestProduct();
+  }, []);
+
   return (
     <StyledWrapper>
       <nav className="category">가구</nav>
       <section className="product-box">
         <div className="photo-box">
           <div className="thumbnail-box">
-            <img src={background1} alt="" className="thumbnail" />
-            <img src={background2} alt="" className="thumbnail" />
-            <img src={background3} alt="" className="thumbnail" />
-            <img src={background4} alt="" className="thumbnail" />
-            <img src={background5} alt="" className="thumbnail" />
+            <img src={product.imageUrl} alt="" className="thumbnail" />
           </div>
           <div className="cover-image-box">
-            <img src={background1} alt="" className="cover-image" />
+            <img src={product.imageUrl} alt="" className="cover-image" />
           </div>
         </div>
         <div className="product-info">
-          <ProductInfoHeader />
+          <ProductInfoHeader
+            name={product.name}
+            price={product.price}
+            storeName={product.storeName}
+          />
           <ButtonBox />
         </div>
       </section>
