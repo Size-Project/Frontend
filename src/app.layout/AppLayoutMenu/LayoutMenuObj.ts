@@ -18,7 +18,7 @@ export const SubMenuObj: any = {
   ],
   store: [
     { id: 10, name: '스토어홈', path: '/' },
-    { id: 11, name: '카테고리', path: '/category' },
+    { id: 11, name: '카테고리', path: '/category', params: '?id=1' },
     { id: 12, name: '베스트', path: '/' },
     { id: 13, name: '오늘의딜', path: '/' },
     { id: 14, name: '방한템특가', path: '/' },
