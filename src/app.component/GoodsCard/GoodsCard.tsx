@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const GoodsCard = ({ goods }: any) => {
+const GoodsCard = ({ goods, href }: any) => {
   return (
     <StyledWrapper className="goods-card-wrap">
-      <a className="goods-card">
+      <a href={`/production/${href}`} className="goods-card">
         <div className="goods-img">
           <img src={goods?.imageUrl} />
         </div>

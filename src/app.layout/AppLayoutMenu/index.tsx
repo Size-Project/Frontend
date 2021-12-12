@@ -41,7 +41,10 @@ const AppLayoutMenu: React.FC<any> = ({
               }}
               onMouseOut={() => setSubHover(false)}
             >
-              <a href={item?.path} onClick={() => setSubSelected(item?.id)}>
+              <a
+                href={`${item?.path}${item?.params ?? ''}`}
+                onClick={() => setSubSelected(item?.id)}
+              >
                 {item?.name}
               </a>
             </li>
@@ -105,6 +108,10 @@ const StyledWrapper = styled.div<any>`
 
         a {
           color: #424242;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
         }
 
         &.true {

@@ -16,8 +16,9 @@ const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
+
       <BrowserRouter>
-        <GlobalStyles />
         <App />
       </BrowserRouter>
     </ThemeProvider>

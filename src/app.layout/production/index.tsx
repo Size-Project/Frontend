@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProductInfoHeader from 'app.feature/production/ProductInfoHeader';
-import ButtonBox from 'app.feature/production/ButtonBox';
 import { API_ITEMS } from 'app.modules/api/constant';
 import { useState, useEffect } from 'react';
 import API from 'app.modules/api';
 import { useParams } from 'react-router';
+import ProductInfoHeader from '../../app.feature/Production/ProductInfoHeader';
+import ButtonBox from '../../app.feature/Production/ButtonBox';
 
 const StyledWrapper = styled.div`
   width: 1136px;
