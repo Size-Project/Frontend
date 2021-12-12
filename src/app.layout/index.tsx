@@ -8,11 +8,19 @@ const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
   const [subSelected, setSubSelected] = useState(
     SubMenuObj[selected].find((item: any) => {
-      return item?.path === window.location.pathname;
+      if (item?.path.split('/')[1] === window.location.pathname.split('/')[1])
+        return (
+          item?.path.split('/')[1] === window.location.pathname.split('/')[1]
+        );
+      else
+        return (
+          item?.subPath.split('/')[1] === window.location.pathname.split('/')[1]
+        );
     }).id,
   );
   const [hover, setHover] = useState(null);
 
+  console.log(subSelected);
   return (
     <>
       <StyledWrapper>
@@ -47,8 +55,8 @@ const AppLayout: React.FC = ({ children }) => {
               <li
                 className={`menu ${selected === menu?.id}`}
                 onClick={() => {
-                  setSelected(menu?.id);
-                  setSubSelected(SubMenuObj[menu?.id][0].id);
+                  // setSelected(menu?.id);
+                  // setSubSelected(SubMenuObj[menu?.id][0].id);
                 }}
                 onMouseOver={() => setHover(menu?.id)}
                 onMouseOut={() => setHover(null)}

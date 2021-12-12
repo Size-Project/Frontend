@@ -68,7 +68,7 @@ const MainPopular = () => {
       </div>
       <GridGoods>
         {goods?.map((item: any, idx: number) => (
-          <GoodsCard key={idx} goods={item} />
+          <GoodsCard key={idx} goods={item} href={item?.id} />
         ))}
         <div
           //@ts-ignore
