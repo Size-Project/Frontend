@@ -7,9 +7,9 @@ import { MenuObj, SubMenuObj } from './AppLayoutMenu/LayoutMenuObj';
 const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
   const [subSelected, setSubSelected] = useState(
-    SubMenuObj[selected].find(
-      (item: any) => item?.path === window.location.pathname,
-    ).id,
+    SubMenuObj[selected].find((item: any) => {
+      return item?.path === window.location.pathname;
+    }).id,
   );
   const [hover, setHover] = useState(null);
 
