@@ -28,7 +28,7 @@ const CategorySwiper: React.FC<any> = ({ subHover }) => {
         {categories?.map((item: any, idx) => (
           <li className="menu-category-item" key={idx}>
             <a href={`/category?id=${item.id}`}>
-              <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
+              <img src={item?.image} />{' '}
               <div className="category-item-title">{item?.name}</div>{' '}
             </a>
           </li>
