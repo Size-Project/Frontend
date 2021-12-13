@@ -26,16 +26,18 @@ interface props {
   height?: number;
   unit?: string;
   children?: any;
+  type?: any;
 }
 
 const BlueButton = ({
   width = 300,
   height = 52,
   unit = 'px',
+  type = 'default',
   children,
 }: props) => {
   return (
-    <StyledWrapper width={width} height={height} unit={unit}>
+    <StyledWrapper width={width} height={height} unit={unit} type={type}>
       {children}
     </StyledWrapper>
   );
