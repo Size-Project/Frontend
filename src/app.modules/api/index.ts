@@ -28,10 +28,11 @@ class API {
     return response;
   }
 
-  GET(url: string) {
+  GET(url: string, header?: any) {
     return this.CALL({
       method: 'GET',
       url,
+      header,
     });
   }
 

@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import API from '../../app.modules/api';
-import { API_USERS_LOGIN } from '../../app.modules/api/constant';
+
+import { login } from 'app.store/action/user.action';
+import { useDispatch } from 'react-redux';
 
 const LoginLayout = () => {
-  const [formData, setFormData] = useState({ email: null, password: null });
-
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const dispatch = useDispatch();
   const handleChange = (value: any) => {
     setFormData((prev) => ({ ...prev, [value.target.id]: value.target.value }));
   };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const res = await API.POST({
-      url: API_USERS_LOGIN,
-      data: {
-        email: formData?.email,
-        password: formData?.password,
-      },
-    });
+    dispatch(login({ email: formData.email, password: formData.password }));
+    // const res = await API.POST({
+    //   url: API_USERS_LOGIN,
+    //   data: {
+    //     email: formData?.email,
+    //     password: formData?.password,
+    //   },
+    // });
 
-    if (res.data) console.log('로그인 성공');
-    else console.log('로그인 실패');
+    // if (res.data) console.log('로그인 성공');
+    // else console.log('로그인 실패');
   };
 
   return (
