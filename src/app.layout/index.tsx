@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useRoutes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppLayoutMenu from './AppLayoutMenu';
 import { MenuObj, SubMenuObj } from './AppLayoutMenu/LayoutMenuObj';
+import { useSelector } from 'react-redux';
 
 const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
@@ -19,8 +20,8 @@ const AppLayout: React.FC = ({ children }) => {
     }).id,
   );
   const [hover, setHover] = useState(null);
+  const nickname = useSelector((state: any) => state.user.nickname);
 
-  console.log(subSelected);
   return (
     <>
       <StyledWrapper>
@@ -68,14 +69,18 @@ const AppLayout: React.FC = ({ children }) => {
         </div>
 
         <div className="header-right">
-          <ul className="rt-wrap">
-            <li className="rt-first">
-              <Link to="/login">로그인</Link>
-            </li>
-            <li className="rt-second">
-              <Link to="/sign">회원가입</Link>
-            </li>
-          </ul>
+          {nickname == '' ? (
+            <ul className="rt-wrap">
+              <li className="rt-first">
+                <Link to="/login">로그인</Link>
+              </li>
+              <li className="rt-second">
+                <Link to="/sign">회원가입</Link>
+              </li>
+            </ul>
+          ) : (
+            <div>{nickname}</div>
+          )}
         </div>
       </StyledWrapper>
       <AppLayoutMenu

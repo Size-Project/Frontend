@@ -6,13 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from 'app.styled';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './app.styled/styled';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './app.store';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+// import { createLogger } from 'redux-logger';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const middleware = [thunk];
+// if (process.env.NODE_ENV !== 'production') {
+//   middleware.push(createLogger()));
+// }
 
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware)),
+);
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
@@ -26,7 +35,4 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
