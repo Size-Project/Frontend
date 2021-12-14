@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import API from '../../app.modules/api';
-import { API_USERS_LOGIN } from '../../app.modules/api/constant';
+import { useNavigate } from 'react-router';
+import { login } from 'app.store/action/user.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginLayout = () => {
-  const [formData, setFormData] = useState({ email: null, password: null });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const dispatch = useDispatch();
+  const nickname = useSelector((state: any) => state.user.nickname);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (nickname !== '') navigate('/');
+  });
 
   const handleChange = (value: any) => {
     setFormData((prev) => ({ ...prev, [value.target.id]: value.target.value }));
@@ -13,16 +21,9 @@ const LoginLayout = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const res = await API.POST({
-      url: API_USERS_LOGIN,
-      data: {
-        email: formData?.email,
-        password: formData?.password,
-      },
-    });
-
-    if (res.data) console.log('로그인 성공');
-    else console.log('로그인 실패');
+    await dispatch(
+      login({ email: formData.email, password: formData.password }),
+    );
   };
 
   return (

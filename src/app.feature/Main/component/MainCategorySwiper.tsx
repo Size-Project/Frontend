@@ -24,7 +24,6 @@ const MainCategorySwiper = () => {
 
   const handleNextBtn = () => {
     if (categories?.length - Math.abs(swiperX) * 2 < MOVING_CNT) {
-      console.log('작은 경우');
       setSwiperX(
         (prev) => prev - (categories.length - Math.abs(categories.length) * 2),
       );
@@ -47,8 +46,10 @@ const MainCategorySwiper = () => {
           {categories &&
             categories?.map((item: any, idx: number) => (
               <li className="category-item" key={idx}>
-                <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/category/store_home_categories/162823226017937426.png?gif=1&w=144&h=144&c=c" />{' '}
-                <div className="category-item-title">{item?.name}</div>
+                <a href={`/category?id=${item?.id}`}>
+                  <img src={item?.image} />{' '}
+                  <div className="category-item-title">{item?.name}</div>
+                </a>
               </li>
             ))}
         </ul>

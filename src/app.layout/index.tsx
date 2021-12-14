@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useRoutes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppLayoutMenu from './AppLayoutMenu';
 import { MenuObj, SubMenuObj } from './AppLayoutMenu/LayoutMenuObj';
+import { useSelector } from 'react-redux';
 
 const AppLayout: React.FC = ({ children }) => {
   const [selected, setSelected] = useState('store');
   const [subSelected, setSubSelected] = useState(
-    SubMenuObj[selected].find(
-      (item: any) => item?.path === window.location.pathname,
-    ).id,
+    SubMenuObj[selected].find((item: any) => {
+      if (item?.path.split('/')[1] === window.location.pathname.split('/')[1])
+        return (
+          item?.path.split('/')[1] === window.location.pathname.split('/')[1]
+        );
+      else
+        return (
+          item?.subPath.split('/')[1] === window.location.pathname.split('/')[1]
+        );
+    }).id,
   );
   const [hover, setHover] = useState(null);
+  const nickname = useSelector((state: any) => state.user.nickname);
 
   return (
     <>
@@ -47,8 +56,8 @@ const AppLayout: React.FC = ({ children }) => {
               <li
                 className={`menu ${selected === menu?.id}`}
                 onClick={() => {
-                  setSelected(menu?.id);
-                  setSubSelected(SubMenuObj[menu?.id][0].id);
+                  // setSelected(menu?.id);
+                  // setSubSelected(SubMenuObj[menu?.id][0].id);
                 }}
                 onMouseOver={() => setHover(menu?.id)}
                 onMouseOut={() => setHover(null)}
@@ -60,14 +69,18 @@ const AppLayout: React.FC = ({ children }) => {
         </div>
 
         <div className="header-right">
-          <ul className="rt-wrap">
-            <li className="rt-first">
-              <Link to="/login">로그인</Link>
-            </li>
-            <li className="rt-second">
-              <Link to="/sign">회원가입</Link>
-            </li>
-          </ul>
+          {nickname == '' ? (
+            <ul className="rt-wrap">
+              <li className="rt-first">
+                <Link to="/login">로그인</Link>
+              </li>
+              <li className="rt-second">
+                <Link to="/sign">회원가입</Link>
+              </li>
+            </ul>
+          ) : (
+            <div>{nickname}</div>
+          )}
         </div>
       </StyledWrapper>
       <AppLayoutMenu

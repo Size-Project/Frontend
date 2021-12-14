@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import API from 'app.modules/api';
 import { API_USERS } from '../../app.modules/api/constant';
+import { useNavigate } from 'react-router';
 
 const SignLayout = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
     emails: 'naver.com',
@@ -33,7 +35,7 @@ const SignLayout = () => {
       },
     });
 
-    if (res.data === 'success') console.log('회원가입 성공');
+    if (res.data === 'success') navigate('/login');
     else console.log('회원가입 실패');
   };
 
