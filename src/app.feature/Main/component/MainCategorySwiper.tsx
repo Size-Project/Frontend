@@ -24,7 +24,6 @@ const MainCategorySwiper = () => {
 
   const handleNextBtn = () => {
     if (categories?.length - Math.abs(swiperX) * 2 < MOVING_CNT) {
-      console.log('작은 경우');
       setSwiperX(
         (prev) => prev - (categories.length - Math.abs(categories.length) * 2),
       );

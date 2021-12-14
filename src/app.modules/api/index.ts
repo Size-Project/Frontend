@@ -7,7 +7,7 @@ export let axiosClient = axios.create({
 axiosClient.defaults.withCredentials = true;
 
 class API {
-  async CALL({ method, url, data = null, headers }: any) {
+  async CALL({ method, url, headers, data = null }: any) {
     const response = axiosClient({
       url,
       method,
@@ -28,11 +28,11 @@ class API {
     return response;
   }
 
-  GET(url: string, header?: any) {
+  GET(url: string, headers?: any) {
     return this.CALL({
       method: 'GET',
       url,
-      header,
+      headers,
     });
   }
 
